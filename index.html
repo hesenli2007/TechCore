@@ -1,412 +1,135 @@
 <!DOCTYPE html>
 <html lang="az">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechCore - Giriş</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TechCore - Giriş</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <div class="lang-switcher" id="lang-btn">
-        <i class="fas fa-globe"></i>
-        <span class="lang-btn-text">AZ</span>
-        <div class="lang-dropdown" id="lang-dropdown">
-            <a href="#" onclick="setLanguage('az')" data-key="langAzerbaijani">Azərbaycanca (AZ)</a>
-            <a href="#" onclick="setLanguage('en')" data-key="langEnglish">English (EN)</a>
-            <a href="#" onclick="setLanguage('ru')" data-key="langRussian">Русский (RU)</a>
-        </div>
+  <div class="lang-switcher" id="lang-btn">
+    <i class="fas fa-globe"></i>
+    <span class="lang-btn-text">AZ</span>
+    <div class="lang-dropdown" id="lang-dropdown">
+      <a href="#" onclick="setLanguage('az')" data-key="langAzerbaijani">Azərbaycanca (AZ)</a>
+      <a href="#" onclick="setLanguage('en')" data-key="langEnglish">English (EN)</a>
+      <a href="#" onclick="setLanguage('ru')" data-key="langRussian">Русский (RU)</a>
+    </div>
+  </div>
+
+  <div class="main-container">
+    <div class="brand-header">
+      <i class="fas fa-microchip brand-icon"></i>
+      <span class="brand-text">TechCore</span>
     </div>
 
-    <div class="main-container">
-        
-        <div class="brand-header">
-            <i class="fas fa-microchip brand-icon"></i>
-            <span class="brand-text">TechCore</span>
+    <p class="subtitle" data-key="appSubtitle">İnventar İdarəetmə Sistemi</p>
+
+    <div class="form-box">
+      <div class="tab-nav">
+        <button class="tab-link active" data-tab="login" data-key="login">Daxil ol</button>
+        <button class="tab-link" data-tab="register" data-key="register">Qeydiyyat</button>
+      </div>
+
+      <form id="login-form" class="tab-content active">
+        <div class="input-group">
+          <label for="login-email" data-key="emailLabel">E-poçt ünvanı</label>
+          <div class="input-wrapper">
+            <i class="fas fa-envelope input-icon"></i>
+            <input type="email" id="login-email" required placeholder="">
+          </div>
         </div>
-        
-        <p class="subtitle" data-key="appSubtitle">İnventar İdarəetmə Sistemi</p>
 
-        <div class="form-box">
-            <div class="tab-nav">
-                <button class="tab-link active" data-tab="login" data-key="login">Daxil ol</button>
-                <button class="tab-link" data-tab="register" data-key="register">Qeydiyyat</button>
-            </div>
-
-            <form id="login-form" class="tab-content active">
-                <div class="input-group">
-                    <label for="login-email" data-key="emailLabel">E-poçt ünvanı</label>
-                    <div class="input-wrapper">
-                        <i class="fas fa-envelope input-icon"></i>
-                        <input type="email" id="login-email" required placeholder="">
-                    </div>
-                </div>
-                
-                <div class="input-group" id="password-group">
-                    <label for="login-password" data-key="passwordLabel">Şifrə</label>
-                    <div class="input-wrapper">
-                        <i class="fas fa-lock input-icon"></i>
-                        <input type="password" id="login-password" required placeholder="••••••••">
-                        <i class="fas fa-eye-slash toggle-password" onclick="togglePassword('login-password')"></i>
-                    </div>
-                </div>
-
-                <div class="forgot-pass-box">
-                    <a href="#" id="forgot-link" data-key="forgotPasswordLink">Şifrəni unutmuşam?</a>
-                </div>
-
-                <button type="submit" id="login-btn" class="submit-btn" data-key="submitLogin">
-                    Daxil ol <i class="fas fa-arrow-right"></i>
-                </button>
-
-                <button type="button" id="reset-btn" class="submit-btn reset-btn-style" style="display: none;" data-key="sendResetLink">
-                    Sıfırlama linkini göndər <i class="fas fa-paper-plane"></i>
-                </button>
-            </form>
-
-            <form id="register-form" class="tab-content">
-                <div class="input-group">
-                    <label for="register-name" data-key="fullNameLabel">Tam ad</label>
-                    <div class="input-wrapper">
-                        <i class="fas fa-user input-icon"></i>
-                        <input type="text" id="register-name" required placeholder="Ad Soyad">
-                    </div>
-                </div>
-                <div class="input-group">
-                    <label for="register-email" data-key="emailLabel">E-poçt ünvanı</label>
-                    <div class="input-wrapper">
-                        <i class="fas fa-envelope input-icon"></i>
-                        <input type="email" id="register-email" required placeholder="">
-                    </div>
-                </div>
-                <div class="input-group">
-                    <label for="register-password" data-key="passwordLabel">Şifrə</label>
-                    <div class="input-wrapper">
-                        <i class="fas fa-lock input-icon"></i>
-                        <input type="password" id="register-password" required placeholder="••••••••">
-                        <i class="fas fa-eye-slash toggle-password" onclick="togglePassword('register-password')"></i>
-                    </div>
-                </div>
-                <div class="input-group">
-                    <label for="register-password-confirm" data-key="confirmPasswordLabel">Şifrəni təsdiqlə</label>
-                    <div class="input-wrapper">
-                        <i class="fas fa-check-circle input-icon"></i>
-                        <input type="password" id="register-password-confirm" required placeholder="••••••••">
-                        <i class="fas fa-eye-slash toggle-password" onclick="togglePassword('register-password-confirm')"></i>
-                    </div>
-                </div>
-                <button type="submit" class="submit-btn" data-key="submitRegister">
-                    Hesab Yarat <i class="fas fa-user-plus"></i>
-                </button>
-            </form>
+        <div class="input-group" id="password-group">
+          <label for="login-password" data-key="passwordLabel">Şifrə</label>
+          <div class="input-wrapper">
+            <i class="fas fa-lock input-icon"></i>
+            <input type="password" id="login-password" required placeholder="••••••••">
+            <!-- onclick SİLİNDİ -->
+            <i class="fas fa-eye-slash toggle-password"></i>
+          </div>
         </div>
+
+        <div class="forgot-pass-box">
+          <a href="#" id="forgot-link" data-key="forgotPasswordLink">Şifrəni unutmuşam?</a>
+        </div>
+
+        <button type="submit" id="login-btn" class="submit-btn" data-key="submitLogin">
+          Daxil ol <i class="fas fa-arrow-right"></i>
+        </button>
+
+        <button type="button" id="reset-btn" class="submit-btn reset-btn-style" style="display: none;" data-key="sendResetLink">
+          Sıfırlama linkini göndər <i class="fas fa-paper-plane"></i>
+        </button>
+      </form>
+
+      <form id="register-form" class="tab-content">
+        <div class="input-group">
+          <label for="register-name" data-key="fullNameLabel">Tam ad</label>
+          <div class="input-wrapper">
+            <i class="fas fa-user input-icon"></i>
+            <input type="text" id="register-name" required placeholder="Ad Soyad">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="register-email" data-key="emailLabel">E-poçt ünvanı</label>
+          <div class="input-wrapper">
+            <i class="fas fa-envelope input-icon"></i>
+            <input type="email" id="register-email" required placeholder="">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="register-password" data-key="passwordLabel">Şifrə</label>
+          <div class="input-wrapper">
+            <i class="fas fa-lock input-icon"></i>
+            <input type="password" id="register-password" required placeholder="••••••••">
+            <!-- onclick SİLİNDİ -->
+            <i class="fas fa-eye-slash toggle-password"></i>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="register-password-confirm" data-key="confirmPasswordLabel">Şifrəni təsdiqlə</label>
+          <div class="input-wrapper">
+            <i class="fas fa-check-circle input-icon"></i>
+            <input type="password" id="register-password-confirm" required placeholder="••••••••">
+            <!-- onclick SİLİNDİ -->
+            <i class="fas fa-eye-slash toggle-password"></i>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn" data-key="submitRegister">
+          Hesab Yarat <i class="fas fa-user-plus"></i>
+        </button>
+      </form>
     </div>
+  </div>
 
-    <div class="help-icon" id="help-btn"><i class="fas fa-info-circle"></i></div>
-    <div id="help-modal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" id="help-modal-close">&times;</span>
-            <h2 data-key="helpModalTitle">TechCore Haqqında</h2>
-            <p data-key="helpModalP1"><b>TechCore</b> - Müəssisə daxili IT resurslarının izlənməsi və idarə edilməsi üçün nəzərdə tutulmuş platformadır.</p>
-            <p data-key="helpModalP2">Sistemdə iki növ istifadəçi mövcuddur: <b>Adminlər</b> (Tam idarəetmə) və <b>İşçilər</b> (Köməkçi Admin/İzləyici).</p>
-            <p data-key="helpModalP3">İşçilər anbarın vəziyyətini görə bilər, lakin dəyişiklik edə bilməzlər.</p>
-        </div>
+  <div class="help-icon" id="help-btn"><i class="fas fa-info-circle"></i></div>
+  <div id="help-modal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" id="help-modal-close">&times;</span>
+      <h2 data-key="helpModalTitle">TechCore Haqqında</h2>
+      <p data-key="helpModalP1"><b>TechCore</b> - Müəssisə daxili IT resurslarının izlənməsi və idarə edilməsi üçün nəzərdə tutulmuş platformadır.</p>
+      <p data-key="helpModalP2">Sistemdə iki növ istifadəçi mövcuddur: <b>Adminlər</b> (Tam idarəetmə) və <b>İşçilər</b> (Köməkçi Admin/İzləyici).</p>
+      <p data-key="helpModalP3">İşçilər anbarın vəziyyətini görə bilər, lakin dəyişiklik edə bilməzlər.</p>
     </div>
+  </div>
 
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    
-    <script>
-        // === TƏRCÜMƏLƏR ===
-        const translations = {
-            az: {
-                appSubtitle: "İnventar İdarəetmə Sistemi",
-                login: "Daxil ol",
-                register: "Qeydiyyat",
-                emailLabel: "E-poçt ünvanı",
-                passwordLabel: "Şifrə",
-                forgotPasswordLink: "Şifrəni unutmuşam?",
-                submitLogin: "Daxil ol",
-                sendResetLink: "Sıfırlama linkini göndər",
-                fullNameLabel: "Tam ad",
-                confirmPasswordLabel: "Şifrəni təsdiqlə",
-                submitRegister: "Hesab Yarat",
-                langAzerbaijani: "Azərbaycanca (AZ)",
-                langEnglish: "English (EN)",
-                langRussian: "Русский (RU)",
-                passwordMismatch: "Şifrələr uyğun gəlmir!",
-                registerSuccess: "Qeydiyyat uğurlu oldu! İndi daxil ola bilərsiniz.",
-                error: "Xəta: ",
-                resetEmailSent: "Şifrə sıfırlama linki e-poçtunuza göndərildi.",
-                helpModalTitle: "TechCore Haqqında",
-                helpModalP1: "TechCore - Müəssisə daxili IT resurslarının izlənməsi üçün platformadır.",
-                helpModalP2: "Sistemdə iki növ istifadəçi mövcuddur: Adminlər və İşçilər.",
-                helpModalP3: "İşçilər anbarın vəziyyətini görə bilər, lakin dəyişiklik edə bilməzlər."
-            },
-            en: {
-                appSubtitle: "Inventory Management System",
-                login: "Login",
-                register: "Register",
-                emailLabel: "Email Address",
-                passwordLabel: "Password",
-                forgotPasswordLink: "Forgot Password?",
-                submitLogin: "Login",
-                sendResetLink: "Send Reset Link",
-                fullNameLabel: "Full Name",
-                confirmPasswordLabel: "Confirm Password",
-                submitRegister: "Register",
-                langAzerbaijani: "Azerbaijani (AZ)",
-                langEnglish: "English (EN)",
-                langRussian: "Russian (RU)",
-                passwordMismatch: "Passwords do not match!",
-                registerSuccess: "Registration successful! You can now login.",
-                error: "Error: ",
-                resetEmailSent: "Password reset link sent to your email.",
-                helpModalTitle: "About TechCore",
-                helpModalP1: "TechCore is a platform for tracking internal IT resources.",
-                helpModalP2: "Two user types: Admins and Staff.",
-                helpModalP3: "Staff can view inventory but cannot edit."
-            },
-            ru: {
-                appSubtitle: "Система Управления Инвентарем",
-                login: "Вход",
-                register: "Регистрация",
-                emailLabel: "Электронная почта",
-                passwordLabel: "Пароль",
-                forgotPasswordLink: "Забыли пароль?",
-                submitLogin: "Войти",
-                sendResetLink: "Отправить ссылку сброса",
-                fullNameLabel: "Полное имя",
-                confirmPasswordLabel: "Подтвердите пароль",
-                submitRegister: "Создать аккаунт",
-                langAzerbaijani: "Азербайджанский (AZ)",
-                langEnglish: "Английский (EN)",
-                langRussian: "Русский (RU)",
-                passwordMismatch: "Пароли не совпадают!",
-                registerSuccess: "Регистрация успешна! Теперь вы можете войти.",
-                error: "Ошибка: ",
-                resetEmailSent: "Ссылка для сброса отправлена на вашу почту.",
-                helpModalTitle: "О TechCore",
-                helpModalP1: "TechCore - платформа для отслеживания IT-ресурсов.",
-                helpModalP2: "Два типа пользователей: Админы и Сотрудники.",
-                helpModalP3: "Сотрудники могут просматривать, но не изменять."
-            }
-        };
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
-        // === FIREBASE CONFIG ===
-        const firebaseConfig = {
-            apiKey: "AIzaSyAI2rM3vttKrDI9C4vDD41_hcXurLvQ6gw",
-            authDomain: "it-inventory-tracker-61d2c.firebaseapp.com",
-            projectId: "it-inventory-tracker-61d2c",
-            storageBucket: "it-inventory-tracker-61d2c.firebasestorage.app",
-            messagingSenderId: "557225811726",
-            appId: "1:557225811726:web:f85c3ca033997d2f95c15f"
-        };
+  <!-- Dil + Auth məntiqi -->
+  <script src="i18n.js"></script>
+  <script src="script.js"></script>
 
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-
-        // === DİL SİSTEMİ ===
-        let currentLang = localStorage.getItem('appLang') || 'az';
-
-        function setLanguage(lang) {
-            currentLang = lang;
-            localStorage.setItem('appLang', lang);
-            
-            document.querySelectorAll('[data-key]').forEach(el => {
-                const key = el.getAttribute('data-key');
-                if (translations[lang][key]) {
-                    if (el.tagName === 'INPUT') el.placeholder = translations[lang][key];
-                    else if(el.childNodes.length > 0) {
-                         // icon varsa qoruyuruq
-                         let hasIcon = false;
-                         el.childNodes.forEach(node => {
-                             if(node.nodeType === 1 && node.tagName === 'I') hasIcon = true;
-                         });
-                         
-                         if(hasIcon) {
-                             // Icon + Text
-                             const icon = el.querySelector('i').outerHTML;
-                             el.innerHTML = icon + ' ' + translations[lang][key];
-                         } else {
-                             el.textContent = translations[lang][key];
-                         }
-                    } else {
-                        el.textContent = translations[lang][key];
-                    }
-                }
-            });
-
-            document.querySelector('.lang-btn-text').innerText = lang.toUpperCase();
-            document.getElementById('lang-dropdown').classList.remove('show');
-        }
-
-        // === ƏN VACİB HİSSƏ: ROUTING (YÖNLƏNDİRMƏ) ===
-        // URL-də viewId olub-olmadığını yoxlayırıq
-        const urlParams = new URLSearchParams(window.location.search);
-        const viewId = urlParams.get('viewId');
-
-        auth.onAuthStateChanged(user => {
-            if (user) {
-                // İstifadəçi giriş edibsə, DB-dən rolunu oxuyuruq
-                db.collection("users").doc(user.uid).get().then(doc => {
-                    if (doc.exists) {
-                        const userData = doc.data();
-                        
-                        if (userData.status === 'deactivated') {
-                            alert("Sizin hesabınız deaktiv edilib.");
-                            auth.signOut();
-                            return;
-                        }
-
-                        // Hara getməli olduğunu təyin edirik
-                        let targetPage = "dashboard.html"; // Varsayılan: user paneli
-                        if (userData.role === 'admin') {
-                            targetPage = "admin.html"; // Admin isə admin paneli
-                        }
-
-                        // Əgər QR koddan gəlibsə (viewId varsa), onu da linkə yapışdırırıq
-                        if (viewId) {
-                            window.location.href = `${targetPage}?viewId=${viewId}`;
-                        } else {
-                            window.location.href = targetPage;
-                        }
-                    } else {
-                        window.location.href = "dashboard.html";
-                    }
-                });
-            } else {
-                console.log("İstifadəçi giriş etməyib.");
-            }
-        });
-
-        // === FORM MƏNTİQLƏRİ ===
-        const loginForm = document.getElementById('login-form');
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
-
-            auth.signInWithEmailAndPassword(email, password)
-                .catch((error) => {
-                    alert(translations[currentLang].error + error.message);
-                });
-        });
-
-        const registerForm = document.getElementById('register-form');
-        registerForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('register-name').value;
-            const email = document.getElementById('register-email').value;
-            const password = document.getElementById('register-password').value;
-            const confirmPassword = document.getElementById('register-password-confirm').value;
-
-            if (password !== confirmPassword) {
-                alert(translations[currentLang].passwordMismatch);
-                return;
-            }
-
-            auth.createUserWithEmailAndPassword(email, password)
-                .then((cred) => {
-                    return db.collection('users').doc(cred.user.uid).set({
-                        name: name,
-                        email: email,
-                        role: 'user',
-                        status: 'active'
-                    });
-                })
-                .then(() => {
-                    alert(translations[currentLang].registerSuccess);
-                })
-                .catch((error) => {
-                    alert(translations[currentLang].error + error.message);
-                });
-        });
-
-        // === UI INTERAKTIVLIK (Tabs, Help Modal, etc.) ===
-        const tabs = document.querySelectorAll('.tab-link');
-        const contents = document.querySelectorAll('.tab-content');
-
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                tabs.forEach(t => t.classList.remove('active'));
-                contents.forEach(c => c.classList.remove('active'));
-                tab.classList.add('active');
-                document.getElementById(tab.getAttribute('data-tab') + '-form').classList.add('active');
-            });
-        });
-
-        // Lang Switcher
-        document.getElementById('lang-btn').addEventListener('click', (e) => {
-            e.stopPropagation();
-            document.getElementById('lang-dropdown').classList.toggle('show');
-        });
-        window.onclick = function(event) {
-            if (!event.target.matches('.lang-switcher') && !event.target.matches('.lang-switcher *')) {
-                document.getElementById('lang-dropdown').classList.remove('show');
-            }
-        }
-
-        // Toggle Password
-        window.togglePassword = function(id) {
-            const input = document.getElementById(id);
-            const icon = input.nextElementSibling;
-            if (input.type === "password") {
-                input.type = "text";
-                icon.classList.remove('fa-eye-slash');
-                icon.classList.add('fa-eye');
-            } else {
-                input.type = "password";
-                icon.classList.remove('fa-eye');
-                icon.classList.add('fa-eye-slash');
-            }
-        }
-
-        // Forgot Password Logic
-        const forgotLink = document.getElementById('forgot-link');
-        const resetBtn = document.getElementById('reset-btn');
-        const passGroup = document.getElementById('password-group');
-        const loginBtn = document.getElementById('login-btn');
-
-        forgotLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            passGroup.style.display = 'none';
-            loginBtn.style.display = 'none';
-            resetBtn.style.display = 'block';
-            forgotLink.style.display = 'none';
-        });
-
-        resetBtn.addEventListener('click', () => {
-            const email = document.getElementById('login-email').value;
-            if(!email) { alert("E-poçt daxil edin!"); return; }
-            auth.sendPasswordResetEmail(email).then(() => {
-                alert(translations[currentLang].resetEmailSent);
-                passGroup.style.display = 'block';
-                loginBtn.style.display = 'block';
-                resetBtn.style.display = 'none';
-                forgotLink.style.display = 'block';
-            }).catch(error => alert(error.message));
-        });
-
-        // Help Modal Logic
-        const helpBtn = document.getElementById('help-btn');
-        const helpModal = document.getElementById('help-modal');
-        const helpClose = document.getElementById('help-modal-close');
-
-        if(helpBtn && helpModal && helpClose) {
-            helpBtn.onclick = () => helpModal.style.display = "block";
-            helpClose.onclick = () => helpModal.style.display = "none";
-            window.addEventListener('click', (e) => {
-                if (e.target == helpModal) helpModal.style.display = "none";
-            });
-        }
-
-        setLanguage(currentLang);
-
-    </script>
 </body>
 </html>
