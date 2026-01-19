@@ -67,38 +67,6 @@ if(helpModal) {
 }
 
 // =======================================================
-// === AVTOMATİK YÖNLƏNDİRMƏ (QR KOD DƏSTƏYİ İLƏ) ===
-// =======================================================
-// İstifadəçi artıq giriş edibsə və index.html-ə gəlibsə (QR ilə və ya birbaşa)
-auth.onAuthStateChanged(user => {
-    if (user && (window.location.pathname.endsWith('index.html') || window.location.pathname === '/')) {
-        const userDocRef = db.collection("users").doc(user.uid);
-        userDocRef.get().then((doc) => {
-            if (doc.exists) {
-                const userData = doc.data();
-                if (userData.status === 'deactivated') {
-                    auth.signOut();
-                    return;
-                }
-                
-                // QR Koddan gələn viewId-ni yoxlayırıq
-                const urlParams = new URLSearchParams(window.location.search);
-                const viewId = urlParams.get('viewId');
-                let targetUrl = userData.role === 'admin' ? "admin.html" : "dashboard.html";
-                
-                // Əgər QR kodla gəlibsə, ID-ni ötür
-                if (viewId) {
-                    targetUrl += `?viewId=${viewId}`;
-                }
-                
-                window.location.href = targetUrl;
-            }
-        });
-    }
-});
-
-
-// =======================================================
 // === QEYDİYYAT (VIP SİYAHI YOXLAMASI İLƏ) ===
 // =======================================================
 const registerForm = document.getElementById('register-form');
@@ -141,7 +109,7 @@ if (registerForm) {
                     name: name,
                     email: user.email,
                     role: userRole,
-                    status: 'active' 
+                    status: 'active' // YENİ: Qeydiyyat zamanı status aktiv olur
                 })
                 .then(() => {
                     user.sendEmailVerification().then(() => {
@@ -241,26 +209,19 @@ if (loginForm) {
                     if (doc.exists) {
                         const userData = doc.data();
 
-                        // Deaktiv status yoxlanışı
+                        // YENİ: Deaktiv status yoxlanışı
                         if (userData.status === 'deactivated') {
                             alert("Sizin hesabınız Admin tərəfindən deaktiv edilib. Giriş qadağandır.");
                             auth.signOut();
                             return;
                         }
 
-                        // URL-də QR kod ID-si varmı?
-                        const urlParams = new URLSearchParams(window.location.search);
-                        const viewId = urlParams.get('viewId');
-                        let redirectParam = "";
-                        if (viewId) {
-                            redirectParam = `?viewId=${viewId}`;
-                        }
-
-                        // Roluna görə yönləndirmə + QR ID
+                        // Roluna görə yönləndirmə
                         if (userData.role === 'admin') {
-                            window.location.href = "admin.html" + redirectParam;
+                            window.location.href = "admin.html";
                         } else {
-                            window.location.href = "dashboard.html" + redirectParam;
+                            // Userlər (Köməkçi Adminlər) dashboard-a gedir
+                            window.location.href = "dashboard.html";
                         }
                     } else {
                         alert("İstifadəçi məlumatları tapılmadı.");
