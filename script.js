@@ -216,13 +216,26 @@ if (loginForm) {
                             return;
                         }
 
+                        // === DÜZƏLİŞ: QR KOD LİNKİNİ QORUMAQ ÜÇÜN ===
+                        // Giriş edərkən URL-də viewId varsa, onu növbəti səhifəyə ötürürük.
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const viewId = urlParams.get('viewId');
+                        let redirectUrl = "";
+
                         // Roluna görə yönləndirmə
                         if (userData.role === 'admin') {
-                            window.location.href = "admin.html";
+                            redirectUrl = "admin.html";
                         } else {
-                            // Userlər (Köməkçi Adminlər) dashboard-a gedir
-                            window.location.href = "dashboard.html";
+                            redirectUrl = "dashboard.html";
                         }
+
+                        // Əgər viewId varsa, linkin sonuna əlavə et
+                        if (viewId) {
+                            redirectUrl += `?viewId=${viewId}`;
+                        }
+
+                        window.location.href = redirectUrl;
+                        // ==============================================
                     } else {
                         alert("İstifadəçi məlumatları tapılmadı.");
                         auth.signOut();
