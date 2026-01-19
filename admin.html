@@ -1457,6 +1457,7 @@
              }
         }
 
+        // === DÜZƏLDİLMİŞ QR KOD FUNKSİYASI (Problem 1 Həlli) ===
         window.openQRModal = function(id) {
             if (window.event) window.event.stopPropagation();
             const item = allEquipmentCache.find(e => e.id === id);
@@ -1467,9 +1468,9 @@
             const qrContainer = document.getElementById('qrcode');
             qrContainer.innerHTML = ""; 
             
-            // --- QR KOD LINKINI DƏYİŞDİK (dashboard.html -> index.html) ---
+            // DÜZƏLİŞ: index.html yox, admin.html yazırıq ki, parametr itməsin
             const path = window.location.href.substring(0, window.location.href.lastIndexOf('/') + 1);
-            const qrUrl = `${path}index.html?viewId=${item.id}`;
+            const qrUrl = `${path}admin.html?viewId=${item.id}`;
             
             document.getElementById('qr-link-text').innerText = qrUrl;
             
@@ -1794,11 +1795,17 @@
                 .catch(error => { alert(t('userCreateError') + error.message); });
         });
         
-        // --- AVADANLIQ ƏLAVƏ ETMƏ ---
+        // --- DÜZƏLDİLMİŞ AVADANLIQ ƏLAVƏ ETMƏ (Problem 2 Həlli) ---
         document.getElementById('admin-add-equipment-form').addEventListener('submit', (e) => {
             e.preventDefault();
-            const adminAddForm = document.getElementById('admin-add-equipment-form');
             
+            // 1. Buttonu "Gözləyin" rejiminə salırıq
+            const submitBtn = document.querySelector('#admin-add-equipment-form .submit-btn');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gözləyin...';
+
+            const adminAddForm = document.getElementById('admin-add-equipment-form');
             const holderName = document.getElementById('holder-name').value;
             
             let holderFaculty = document.getElementById('holder-faculty').value;
@@ -1848,7 +1855,19 @@
                         generateTechCoreID(); 
                         document.querySelector('.tab-link[data-tab="inventory-tab"]').click();
                     })
-                    .catch((error) => { alert(t('errorAddingEquipment') + ": " + error.message); });
+                    .catch((error) => { 
+                        alert(t('errorAddingEquipment') + ": " + error.message); 
+                    })
+                    .finally(() => {
+                        // İş bitdikdən sonra buttonu əvvəlki halına qaytar
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnText;
+                    });
+            }).catch((error) => {
+                // Şəkil xətası olsa belə button açılsın
+                alert("Xəta baş verdi: " + error.message);
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
             });
         });
 
